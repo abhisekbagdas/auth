@@ -14,10 +14,10 @@ const Login = ({ setUser }) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "/api/auth/login",
         form,
       );
-      setUser(res.data);
+      setUser(res.data.user);
       navigate("/");
     } catch (err) {
       setError("Invalid email or password");
@@ -26,7 +26,7 @@ const Login = ({ setUser }) => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gray-100">
-      <form className="bg-white p-6 rounded shadow-md" onSubmit={handleSubmit}>
+      <form className="bg-white p-6 rounded shadow-md w-full max-w-lg" onSubmit={handleSubmit}>
         <h2 className="text-xl font-bold mb-4">Login</h2>
         {error && <p className="text-red-500 mb-3">{error}</p>}
         <input
