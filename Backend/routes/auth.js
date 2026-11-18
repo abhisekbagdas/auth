@@ -80,10 +80,10 @@ router.get("/me", protect, async (req, res) => {
     // return info of the logged in user from protect middleware
 });
 
-//Logout
+// Logout
 router.post("/logout", (req, res) => {
-    res.clearCookie('token', cookieOptions, maxAge = 1);
-    res.json({ message: "Logged out successfully" });
+  res.cookie("token", "", { ...cookieOptions, maxAge: 1 });
+  res.json({ message: "Logged out successfully" });
 });
 
 export default router;
